@@ -23,7 +23,7 @@ public class NamingScreen : GuiScreen
             {
                 ModEntry.GetInstance().Config.Labelings.Add(new Labeling(name.Text,
                     ModEntry.GetInstance().FirstObjectTile, ModEntry.GetInstance().SecondObjectTile,
-                    Game1.player.currentLocation.Name, true, ColorUtils.NameType.Aqua));
+                    Game1.player.currentLocation.Name, true, Color.Aqua));
                 ModEntry.GetInstance().ConfigReload();
                 ModEntry.GetInstance().FirstObjectTile = Vector2.Zero;
                 ModEntry.GetInstance().FirstObjectTile = Vector2.Zero;

@@ -11,33 +11,10 @@ public class ColorGui : ScreenGui
     {
         foreach (var variable in ModEntry.GetInstance().Config.Labelings)
         {
-            AddElement(new ColorButton(variable.Name, variable.Name)
-            {
-                Color = ColorUtils.Instance.Get(variable.Color),
-                OnLeftClicked = () => { OpenScreenGui(new SettingColorGui(variable)); }
-            });
-        }
-    }
-}
-
-public class SettingColorGui : ScreenGui
-{
-    public SettingColorGui(Labeling labeling)
-    {
-        foreach (var variable in ColorUtils.Instance.Colors)
-        {
-            AddElement(new ColorButton(
-                $"{ModEntry.GetInstance().GetTranslation("labeling.labelingGui.color")}:{variable.Name}",
-                ModEntry.GetInstance().GetTranslation("labeling.labelingGui.color"))
-            {
-                Color = ColorUtils.Instance.Get(variable.Name),
-                OnLeftClicked = () =>
-                {
-                    labeling.Color = variable.Name;
-                    ModEntry.GetInstance().ConfigReload();
-                    Game1.exitActiveMenu();
-                }
-            });
+            AddElement(new Label(variable.Name, variable.Name));
+            var colorPicker = new ColorPicker(variable.Name, variable.Name, variable.Color);
+            colorPicker.OnColorChanged = () => { variable.Color = colorPicker.Color; };
+            AddElement(colorPicker);
         }
     }
 }
