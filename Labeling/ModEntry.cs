@@ -23,7 +23,15 @@ public class ModEntry : Mod
 
     public override void Entry(IModHelper helper)
     {
-        Config = helper.ReadConfig<Config>();
+        try
+        {
+            Config = helper.ReadConfig<Config>();
+        }
+        catch (Exception e)
+        {
+            ConfigReload();
+        }
+
         helper.Events.Input.ButtonReleased += OnButtonReleased;
         helper.Events.Input.ButtonPressed += OnButtonPressed;
         helper.Events.Display.Rendered += OnRender;
@@ -46,8 +54,7 @@ public class ModEntry : Mod
         {
             var firstLabelingPosition = GetLocalPosition(Game1.viewport, variable.FirstObjectTile);
             var secondLabelingPosition = GetLocalPosition(Game1.viewport, variable.SecondObjectTile);
-            var color = ColorUtils.Instance.Get(variable.Color);
-            color.A = 1;
+            var color = variable.Color;
             if (variable.Display && variable.CurrentGameLocation.Equals(Game1.player.currentLocation.Name))
             {
                 e.SpriteBatch.Draw(Game1.staminaRect, new Rectangle((int)firstLabelingPosition.X,

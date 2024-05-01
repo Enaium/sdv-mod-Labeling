@@ -23,7 +23,10 @@ public class LabelGui : ScreenGui
         var colorTitle = ModEntry.GetInstance().GetTranslation("labeling.labelingGui.color");
         AddElement(new Button(colorTitle, colorTitle)
         {
-            OnLeftClicked = () => { OpenScreenGui(new ColorGui()); }
+            OnLeftClicked = () =>
+            {
+                OpenScreenGui(new ColorGui()); 
+            }
         });
 
         var deleteTitle = ModEntry.GetInstance().GetTranslation("labeling.deleteLabeling.button.delete.title");

@@ -12,9 +12,11 @@ public class Labeling
 
     public string CurrentGameLocation { get; set; }
     public bool Display { get; set; }
-    public ColorUtils.NameType Color { get; set; }
 
-    public Labeling(string name, Vector2 firstObjectTile, Vector2 secondObjectTile, string currentGameLocation, bool display, ColorUtils.NameType color)
+    public Color Color { get; set; }
+
+    public Labeling(string name, Vector2 firstObjectTile, Vector2 secondObjectTile, string currentGameLocation,
+        bool display, Color color)
     {
         Name = name;
         FirstObjectTile = firstObjectTile;
